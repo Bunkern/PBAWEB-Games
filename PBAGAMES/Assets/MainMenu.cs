@@ -5,37 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void CreateProfileBtn(string newGame)
+    public void CreateProfileBtn (string newGame)
     {
         SceneManager.LoadScene(newGame);
     }
 
-    public void StartGANBtn(string newGame)
+    public void StartGANBtn (string newGame)
     {
         SceneManager.LoadScene(newGame);
     }
 
-    public void StartSSPBtn(string newGame)
+    public void StartSSPBtn (string newGame)
     {
         SceneManager.LoadScene(newGame);
     }
 
-    public void StartTTTBtn(string newGame)
+    public void StartTTTBtn (string newGame)
     {
         SceneManager.LoadScene(newGame);
     }
 
-    public void QuitGameBtn()
+    public void QuitGameBtn ()
     {
         Application.Quit();
     }
 
-    public void BackBtn(string MenuScene)
+    public void BackBtn (string MenuScene)
     {
         SceneManager.LoadScene(MenuScene);
     }
 
-    public void SettingsBtn(string SettingsScene)
+    public void SettingsBtn (string SettingsScene)
     {
         SceneManager.LoadScene(SettingsScene);
     }
