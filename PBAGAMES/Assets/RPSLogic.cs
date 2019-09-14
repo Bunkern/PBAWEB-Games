@@ -29,6 +29,7 @@ public class RPSLogic : MonoBehaviour
     void Start()
     {
         aiNumber = random.Next(1, 3);
+
     }
 
     void Awake()
@@ -39,15 +40,20 @@ public class RPSLogic : MonoBehaviour
 
     public void RockChoice()
     {
-
+        CompareChoice();
     }
 
     public void PapirChoice()
     {
-
+        CompareChoice();
     }
 
     public void ScissorsChoice()
+    {
+        CompareChoice();
+    }
+
+    void CompareChoice()
     {
 
     }
