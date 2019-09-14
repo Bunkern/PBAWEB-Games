@@ -7,46 +7,63 @@ using UnityEngine.UI;
 public class NumberToGuess : MonoBehaviour
 {
     public Text scoreText;
+    public Text text;
+
     public InputField nameText;
-    public InputField numberText;
+
+    public InputField input;
 
     private System.Random random = new System.Random();
+
     public int numberToGuess;
     public int guessTime;
 
     //There can be only one
-    public static string playerNumber;
     public static string playerName;
     public static int playerScore;
-    public static string playerGame;
+    public static string playerGame = "Guess_A_Number";
 
     // Start is called before the first frame update
     void Start()
     {
         numberToGuess = random.Next(1, 10);
+        guessTime = 3;
     }
 
-    //When the submit button is activated
-    public void OnSubmit()
+    void Awake()
     {
-        if (guessTime < 3) {
-            playerName = nameText.text;
-            playerNumber = numberText.text;
-            guessTime++;
-            if (guessTime == 3)
-            {
-                PostToDatabase();
-            }
-            
-        }
-        
+        text.text = "Can you guess the correct number ?";
     }
+
+    public void GetInput ()
+    {
+        string guess = input.text;
+        int guessInt = System.Convert.ToInt32(guess);
+        CompareNumbers(guessInt);
+         input.text = "";
+    }
+
+    void CompareNumbers(int guessInt)
+    {
+        if (guessTime > 0) {
+            guessTime--;
+            if (guessInt == numberToGuess)
+            {
+                text.text = "You Guessed it";
+            } else if (guessInt != numberToGuess)
+            {
+                text.text = "Guess again";
+            }
+        } else
+        {
+            text.text = "No more guesses";
+        }
+    }    
 
     //Post data to database
     private void PostToDatabase()
     {
         User user = new User();
-        RestClient.Post("https://pba-web-52d02.firebaseio.com/.json", user);
+        RestClient.Put("https://pba-web-52d02.firebaseio.com/" + playerGame + ".json", user);
     }
-
 }

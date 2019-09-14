@@ -8,14 +8,15 @@ public class User
 {
 
     public string userName;
-    public string userNumber;
+    public int userNumber;
     public string userGame;
     public int userScore;
 
     public User()
     {
         userName = NumberToGuess.playerName;
-        userNumber = NumberToGuess.playerNumber;
+ //       userNumber = NumberToGuess.playerNumber;
         userScore = NumberToGuess.playerScore;
+        userGame = NumberToGuess.playerGame;
     }
 }

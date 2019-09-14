@@ -493,7 +493,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 292583246}
-        m_MethodName: SettingsBtn
+        m_MethodName: StartGANBtn
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc40b5e91ccbf1642b14203ed85a31e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerGame: Guess_A_Number
 --- !u!1 &417606636
 GameObject:
   m_ObjectHideFlags: 0
