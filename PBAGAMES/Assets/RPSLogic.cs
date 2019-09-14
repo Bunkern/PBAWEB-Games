@@ -4,27 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NumberToGuess : MonoBehaviour
+public class RPSLogic : MonoBehaviour
 {
     public Text scoreText;
     public Text text;
     public Text noOfGamesText;
 
-    public InputField nameText;
-
-    public InputField input;
-
     private System.Random random = new System.Random();
 
-    public int numberToGuess;
-    public int guessTime;
     public int noOfGames;
     public int score;
 
     //There can be only one
     public static string playerName;
     public static int playerScore;
-    public static string playerGame = "Guess_A_Number";
+    public static string playerGame = "Rock_Papir_Scissors";
     public static int playerNoOfGames;
 
     // Start is called before the first frame update
@@ -37,15 +31,15 @@ public class NumberToGuess : MonoBehaviour
     void Awake()
     {
         text.text = "Can you guess the correct number ?";
-        
+
     }
 
-    public void GetNumberInput ()
+    public void GetNumberInput()
     {
         string guess = input.text;
         int guessInt = System.Convert.ToInt32(guess);
         CompareNumbers(guessInt);
-         input.text = "";
+        input.text = "";
     }
 
     public void GetNameInput()
@@ -55,8 +49,9 @@ public class NumberToGuess : MonoBehaviour
 
     void CompareNumbers(int guessInt)
     {
-        
-        if (guessTime > 1) {
+
+        if (guessTime > 1)
+        {
             guessTime--;
             if (guessInt == numberToGuess)
             {
@@ -68,11 +63,13 @@ public class NumberToGuess : MonoBehaviour
                 scoreText.text = "Score: " + System.Convert.ToString(playerScore);
                 playerNoOfGames = noOfGames;
                 NewGame();
-            } else if (guessInt != numberToGuess)
+            }
+            else if (guessInt != numberToGuess)
             {
                 text.text = "Guess again";
             }
-        } else
+        }
+        else
         {
             noOfGames++;
             noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(noOfGames);
@@ -80,7 +77,7 @@ public class NumberToGuess : MonoBehaviour
             playerNoOfGames = noOfGames;
             NewGame();
         }
-    }    
+    }
 
     void NewGame()
     {

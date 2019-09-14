@@ -17,6 +17,6 @@ public class User
         userName = NumberToGuess.playerName;
         userScore = NumberToGuess.playerScore;
         userGame = NumberToGuess.playerGame;
-        userNoOfGames = NumberToGuess.noOfGames;
+        userNoOfGames = NumberToGuess.playerNoOfGames;
     }
 }
