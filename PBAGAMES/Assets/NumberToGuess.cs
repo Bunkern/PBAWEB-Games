@@ -35,7 +35,7 @@ public class NumberToGuess : MonoBehaviour
         text.text = "Can you guess the correct number ?";
     }
 
-    public void GetInput ()
+    public void GetNumberInput ()
     {
         string guess = input.text;
         int guessInt = System.Convert.ToInt32(guess);
@@ -43,13 +43,20 @@ public class NumberToGuess : MonoBehaviour
          input.text = "";
     }
 
+    public void GetNameInput()
+    {
+        playerName = nameText.text;
+    }
+
     void CompareNumbers(int guessInt)
     {
-        if (guessTime > 0) {
+        if (guessTime > 1) {
             guessTime--;
             if (guessInt == numberToGuess)
             {
                 text.text = "You Guessed it";
+                playerScore = guessTime + 1;
+                scoreText.text = "Score: " + System.Convert.ToString(playerScore);
             } else if (guessInt != numberToGuess)
             {
                 text.text = "Guess again";
@@ -61,9 +68,9 @@ public class NumberToGuess : MonoBehaviour
     }    
 
     //Post data to database
-    private void PostToDatabase()
+    public void PostToDatabase()
     {
         User user = new User();
-        RestClient.Put("https://pba-web-52d02.firebaseio.com/" + playerGame + ".json", user);
+        RestClient.Put("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);
     }
 }
