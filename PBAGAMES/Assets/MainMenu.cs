@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void CreateProfileBtn (string newGame)
-    {
-        SceneManager.LoadScene(newGame);
-    }
 
     public void StartGANBtn (string newGame)
     {
@@ -35,8 +31,4 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(MenuScene);
     }
 
-    public void SettingsBtn (string SettingsScene)
-    {
-        SceneManager.LoadScene(SettingsScene);
-    }
 }
