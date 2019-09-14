@@ -38,6 +38,6 @@ public class MainMenu : MonoBehaviour
 
     private void GetScoreFromDatabase()
     {
-        RestClient.Get<User>("https://pba-web-52d02.firebaseio.com/.json");
+        //RestClient.Get<User>("https://pba-web-52d02.firebaseio.com/.json");
     }
 }

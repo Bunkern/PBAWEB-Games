@@ -15,7 +15,7 @@ public class RPSLogic : MonoBehaviour
     public InputField nameText;
 
     public int aiNumber;
-
+    public int playerChoice;
     public int noOfGames;
     public int score;
 
@@ -28,7 +28,7 @@ public class RPSLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        aiNumber = random.Next(1, 3);
+        aiNumber = random.Next(1, 4);
 
     }
 
@@ -40,21 +40,35 @@ public class RPSLogic : MonoBehaviour
 
     public void RockChoice()
     {
+        playerChoice = 1;
         CompareChoice();
     }
 
     public void PapirChoice()
     {
+        playerChoice = 2;
         CompareChoice();
     }
 
     public void ScissorsChoice()
     {
+        playerChoice = 3;
         CompareChoice();
     }
 
     void CompareChoice()
     {
+        if (aiNumber == playerChoice)
+        {
+            text.text = "It´s a Draw. You both get a point" + "\n" + "A new game has startet";
+            score++;
+            playerScore = score;
+            noOfGames++;
+            playerNoOfGames = noOfGames;
+            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+            NewGame();
+        }
 
     }
 
@@ -103,7 +117,7 @@ public class RPSLogic : MonoBehaviour
     //Post data to database
     public void PostToDatabase()
     {
-        User user = new User();
-        RestClient.Put("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);
+        RPSUser user = new RPSUser();
+        RestClient.Post("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);
     }
 }

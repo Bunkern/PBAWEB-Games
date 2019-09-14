@@ -20,6 +20,7 @@ public class NumberToGuess : MonoBehaviour
     public int guessTime;
     public int noOfGames;
     public int score;
+    public string game;
 
     //There can be only one
     public static string playerName;
@@ -90,7 +91,8 @@ public class NumberToGuess : MonoBehaviour
     //Post data to database
     public void PostToDatabase()
     {
-        User user = new User();
+        
+        GANUser user = new GANUser();
         RestClient.Put("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);
     }
 }

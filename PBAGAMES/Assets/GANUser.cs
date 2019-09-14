@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class User
+public class GANUser
 {
 
     public string userName;
@@ -12,11 +12,12 @@ public class User
     public int userScore;
     public int userNoOfGames;
 
-    public User()
+    public GANUser( )
     {
         userName = NumberToGuess.playerName;
         userScore = NumberToGuess.playerScore;
         userGame = NumberToGuess.playerGame;
         userNoOfGames = NumberToGuess.playerNoOfGames;
     }
+
 }
