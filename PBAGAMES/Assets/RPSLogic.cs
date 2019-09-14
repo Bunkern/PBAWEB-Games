@@ -12,6 +12,10 @@ public class RPSLogic : MonoBehaviour
 
     private System.Random random = new System.Random();
 
+    public InputField nameText;
+
+    public int aiNumber;
+
     public int noOfGames;
     public int score;
 
@@ -24,22 +28,28 @@ public class RPSLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numberToGuess = random.Next(1, 10);
-        guessTime = 3;
+        aiNumber = random.Next(1, 3);
     }
 
     void Awake()
     {
-        text.text = "Can you guess the correct number ?";
+        text.text = "Can you Best the AI ?";
 
     }
 
-    public void GetNumberInput()
+    public void RockChoice()
     {
-        string guess = input.text;
-        int guessInt = System.Convert.ToInt32(guess);
-        CompareNumbers(guessInt);
-        input.text = "";
+
+    }
+
+    public void PapirChoice()
+    {
+
+    }
+
+    public void ScissorsChoice()
+    {
+
     }
 
     public void GetNameInput()
@@ -50,21 +60,21 @@ public class RPSLogic : MonoBehaviour
     void CompareNumbers(int guessInt)
     {
 
-        if (guessTime > 1)
+        if (guessInt > 1)
         {
-            guessTime--;
-            if (guessInt == numberToGuess)
+
+            if (guessInt == 5)
             {
                 text.text = "You Guessed it" + "\n" + "a new Game has startet";
                 noOfGames++;
                 noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(noOfGames);
-                score = guessTime + 1;
+
                 playerScore = playerScore + score;
                 scoreText.text = "Score: " + System.Convert.ToString(playerScore);
                 playerNoOfGames = noOfGames;
                 NewGame();
             }
-            else if (guessInt != numberToGuess)
+            else if (guessInt != 5)
             {
                 text.text = "Guess again";
             }
