@@ -8,6 +8,7 @@ public class NumberToGuess : MonoBehaviour
 {
     public Text scoreText;
     public Text text;
+    public Text noOfGamesText;
 
     public InputField nameText;
 
@@ -17,6 +18,7 @@ public class NumberToGuess : MonoBehaviour
 
     public int numberToGuess;
     public int guessTime;
+    public static int noOfGames;
 
     //There can be only one
     public static string playerName;
@@ -50,22 +52,34 @@ public class NumberToGuess : MonoBehaviour
 
     void CompareNumbers(int guessInt)
     {
+        
         if (guessTime > 1) {
             guessTime--;
             if (guessInt == numberToGuess)
             {
-                text.text = "You Guessed it";
+                text.text = "You Guessed it" + "\n" + "a new Game has startet";
+                noOfGames++;
+                noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(noOfGames);
                 playerScore = guessTime + 1;
                 scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+                NewGame();
             } else if (guessInt != numberToGuess)
             {
                 text.text = "Guess again";
             }
         } else
         {
-            text.text = "No more guesses";
+            noOfGames++;
+            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(noOfGames);
+            text.text = "No more guesses for this game" + "\n" + "a new Game has startet";
+            NewGame();
         }
     }    
+
+    void NewGame()
+    {
+        Start();
+    }
 
     //Post data to database
     public void PostToDatabase()
