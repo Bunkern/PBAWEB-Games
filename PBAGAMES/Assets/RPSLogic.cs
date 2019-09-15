@@ -170,17 +170,19 @@ public class RPSLogic : MonoBehaviour
 
     public void Submit()
     {
-        if (playerName == "")
-        {
-            text.text = "You need to input player name, before you can upload";
-        }
+        
         if (playerNoOfGames == 0)
         {
             text.text = "You need to play a game, before you can upload";
+            
         }
         if (playerNoOfGames > 0)
         {
-            if (!playerName.Equals(""))
+            if (playerName == "")
+            {
+                text.text = "You need to input player name, before you can upload" + "\n" + "A new game will start soon.";
+            }
+            else if (!playerName.Equals(""))
             {
                 PostToDatabase();
             }

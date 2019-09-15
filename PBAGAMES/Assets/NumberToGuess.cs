@@ -88,11 +88,32 @@ public class NumberToGuess : MonoBehaviour
         Start();
     }
 
+    public void Submit()
+    {
+
+        if (playerNoOfGames == 0)
+        {
+            text.text = "You need to play a game, before you can upload";
+
+        }
+        if (playerNoOfGames > 0)
+        {
+            if (playerName == "")
+            {
+                text.text = "You need to input player name, before you can upload" + "\n" + "A new game will start soon.";
+            }
+            else if (!playerName.Equals(""))
+            {
+                PostToDatabase();
+            }
+        }
+    }
+
     //Post data to database
     public void PostToDatabase()
     {
         
         GANUser user = new GANUser();
-        RestClient.Put("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);
+        RestClient.Post("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);
     }
 }
