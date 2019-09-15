@@ -9,14 +9,11 @@ public class TTTLogic : MonoBehaviour
     public Text scoreText;
     public Text text;
     public Text noOfGamesText;
-    public Text aiText;
-
-    private System.Random random = new System.Random();
 
     public InputField nameText;
 
-    public int aiNumber;
-    public int playerChoice;
+    public int turn;
+    public int turnCount;
     public int noOfGames;
     public int score;
 
@@ -29,9 +26,12 @@ public class TTTLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        aiNumber = random.Next(1, 4);
         text.text = "Can you Best the AI ?";
-        aiText.text = "AI Choice";
+    }
+
+    public void PlayerChoice()
+    {
+      
     }
 
     IEnumerator WaitAndRestart()
