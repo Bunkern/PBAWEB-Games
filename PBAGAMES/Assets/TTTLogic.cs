@@ -29,11 +29,6 @@ public class TTTLogic : MonoBehaviour
         text.text = "Can you Best the AI ?";
     }
 
-    public void PlayerChoice()
-    {
-      
-    }
-
     IEnumerator WaitAndRestart()
     {
         yield return new WaitForSeconds(2);
