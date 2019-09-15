@@ -178,12 +178,13 @@ public class RPSLogic : MonoBehaviour
         {
             text.text = "You need to play a game, before you can upload";
         }
-
-        if (playerName != "")
+        if (playerNoOfGames > 0)
         {
-            text.text = "You did it";
+            if (!playerName.Equals(""))
+            {
+                PostToDatabase();
+            }
         }
-
     }
 
     //Post data to database
