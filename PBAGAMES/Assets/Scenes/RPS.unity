@@ -342,6 +342,7 @@ MonoBehaviour:
   scoreText: {fileID: 361123330}
   text: {fileID: 732895786}
   noOfGamesText: {fileID: 743727796}
+  aiText: {fileID: 1782963056}
   nameText: {fileID: 1362953676}
   aiNumber: 0
   playerChoice: 0
@@ -566,7 +567,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 294948376}
-        m_MethodName: PostToDatabase
+        m_MethodName: Submit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

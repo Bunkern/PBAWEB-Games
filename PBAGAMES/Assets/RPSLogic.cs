@@ -9,6 +9,7 @@ public class RPSLogic : MonoBehaviour
     public Text scoreText;
     public Text text;
     public Text noOfGamesText;
+    public Text aiText;
 
     private System.Random random = new System.Random();
 
@@ -29,13 +30,8 @@ public class RPSLogic : MonoBehaviour
     void Start()
     {
         aiNumber = random.Next(1, 4);
-
-    }
-
-    void Awake()
-    {
         text.text = "Can you Best the AI ?";
-
+        aiText.text = "AI Choice";
     }
 
     public void RockChoice()
@@ -58,18 +54,108 @@ public class RPSLogic : MonoBehaviour
 
     void CompareChoice()
     {
+        DisplayAIChoice();
         if (aiNumber == playerChoice)
         {
-            text.text = "It´s a Draw. You both get a point" + "\n" + "A new game has startet";
+            text.text = "It´s a Draw. You both get a point" + "\n" + "A new game will start soon";
             score++;
             playerScore = score;
             noOfGames++;
             playerNoOfGames = noOfGames;
             scoreText.text = "Score: " + System.Convert.ToString(playerScore);
             noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
-            NewGame();
+            StartCoroutine( WaitAndRestart());            
         }
 
+        if (aiNumber == 1 && playerChoice == 2)
+        {
+            text.text = "You Win. You 3 points" + "\n" + "A new game will start soon";
+            score = score+3;
+            playerScore = score;
+            noOfGames++;
+            playerNoOfGames = noOfGames;
+            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+            StartCoroutine(WaitAndRestart());
+        }
+
+        if (aiNumber == 1 && playerChoice == 3)
+        {
+            text.text = "You Loose. You do not get any points" + "\n" + "A new game will start soon";
+            noOfGames++;
+            playerNoOfGames = noOfGames;
+            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+            StartCoroutine(WaitAndRestart());
+        }
+
+        if (aiNumber == 2 && playerChoice == 3)
+        {
+            text.text = "You Win. You 3 points" + "\n" + "A new game will start soon";
+            score = score + 3;
+            playerScore = score;
+            noOfGames++;
+            playerNoOfGames = noOfGames;
+            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+            StartCoroutine(WaitAndRestart());
+        }
+
+        if (aiNumber == 2 && playerChoice == 1)
+        {
+            text.text = "You Loose. You do not get any points" + "\n" + "A new game will start soon";
+            noOfGames++;
+            playerNoOfGames = noOfGames;
+            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+            StartCoroutine(WaitAndRestart());
+        }
+
+        if (aiNumber == 3 && playerChoice == 1)
+        {
+            text.text = "You Win. You 3 points" + "\n" + "A new game will start soon";
+            score = score + 3;
+            playerScore = score;
+            noOfGames++;
+            playerNoOfGames = noOfGames;
+            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+            StartCoroutine(WaitAndRestart());
+        }
+
+        if (aiNumber == 3 && playerChoice == 2)
+        {
+            text.text = "You Loose. You do not get any points" + "\n" + "A new game will start soon";
+            noOfGames++;
+            playerNoOfGames = noOfGames;
+            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+            StartCoroutine(WaitAndRestart());
+        }
+    }
+
+    public void DisplayAIChoice()
+    {
+        if (aiNumber == 1)
+        {
+            aiText.text = "AI Choice is ROCK";
+        }
+
+        if (aiNumber == 2)
+        {
+            aiText.text = "AI Choice is Papir";
+        }
+
+        if (aiNumber == 3)
+        {
+            aiText.text = "AI Choice is Scissors";
+        }
+    }
+
+    IEnumerator WaitAndRestart()
+    {
+        yield return new WaitForSeconds(2);
+        NewGame();
     }
 
     public void GetNameInput()
@@ -77,47 +163,33 @@ public class RPSLogic : MonoBehaviour
         playerName = nameText.text;
     }
 
-    void CompareNumbers(int guessInt)
-    {
-
-        if (guessInt > 1)
-        {
-
-            if (guessInt == 5)
-            {
-                text.text = "You Guessed it" + "\n" + "a new Game has startet";
-                noOfGames++;
-                noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(noOfGames);
-
-                playerScore = playerScore + score;
-                scoreText.text = "Score: " + System.Convert.ToString(playerScore);
-                playerNoOfGames = noOfGames;
-                NewGame();
-            }
-            else if (guessInt != 5)
-            {
-                text.text = "Guess again";
-            }
-        }
-        else
-        {
-            noOfGames++;
-            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(noOfGames);
-            text.text = "No more guesses for this game" + "\n" + "a new Game has startet";
-            playerNoOfGames = noOfGames;
-            NewGame();
-        }
-    }
-
     void NewGame()
     {
         Start();
     }
 
+    public void Submit()
+    {
+        if (playerName == "")
+        {
+            text.text = "You need to input player name, before you can upload";
+        }
+        if (playerNoOfGames == 0)
+        {
+            text.text = "You need to play a game, before you can upload";
+        }
+
+        if (playerName != "")
+        {
+            text.text = "You did it";
+        }
+
+    }
+
     //Post data to database
     public void PostToDatabase()
     {
-        RPSUser user = new RPSUser();
-        RestClient.Post("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);
-    }
+                RPSUser user = new RPSUser();
+                RestClient.Post("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);         
+        }   
 }

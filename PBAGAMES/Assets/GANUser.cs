@@ -12,7 +12,7 @@ public class GANUser
     public int userScore;
     public int userNoOfGames;
 
-    public GANUser( )
+    public GANUser()
     {
         userName = NumberToGuess.playerName;
         userScore = NumberToGuess.playerScore;
