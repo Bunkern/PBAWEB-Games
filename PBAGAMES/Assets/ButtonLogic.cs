@@ -24,7 +24,13 @@ public class ButtonLogic : MonoBehaviour
     {
         buttonText.text = myController.GetPlayerSide();
         myButton.interactable = false;
-        //myController.EndTurn();
+        myController.EndTurn();
+    }
+
+    public void ResetText()
+    {
+        buttonText.text = "";
+        myButton.interactable = true;
     }
 
     public void SetController(TTTLogic controller)

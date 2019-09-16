@@ -21,6 +21,8 @@ public class TTTLogic : MonoBehaviour
     public int turnCount;
     public int noOfGames;
     public int score;
+    public int noOfMoves;
+    public int winner;
 
     //There can be only one
     public static string playerName;
@@ -34,12 +36,14 @@ public class TTTLogic : MonoBehaviour
         text.text = "Can you Best the AI ?";
     }
 
+    //Set up when the game starts.
     private void Awake()
     {
         playerSide = "X";
         SetControllerOnButtons();
     }
 
+    //sets the buttons text for the current playerside.
     void SetControllerOnButtons()
     {
         for (int i = 0; i < buttonList.Length; i++)
@@ -57,13 +61,87 @@ public class TTTLogic : MonoBehaviour
     //End current players turn.
     public void EndTurn()
     {
+        noOfMoves++;
+        if (buttonList[0].text == buttonList[1].text && buttonList[1].text == buttonList[2].text && buttonList[0].text == playerSide)
+        {
+            winner = 0;
+            GameOver();
+        }
+        if (buttonList[3].text == buttonList[4].text && buttonList[4].text == buttonList[5].text && buttonList[3].text == playerSide)
+        {
+            winner = 0;
+            GameOver();
+        }
+        if (buttonList[6].text == buttonList[7].text && buttonList[7].text == buttonList[8].text && buttonList[6].text == playerSide)
+        {
+            winner = 0;
+            GameOver();
+        }
+        if (buttonList[0].text == buttonList[3].text && buttonList[3].text == buttonList[6].text && buttonList[0].text == playerSide)
+        {
+            winner = 0;
+            GameOver();
+        }
+        if (buttonList[1].text == buttonList[4].text && buttonList[4].text == buttonList[7].text && buttonList[1].text == playerSide)
+        {
+            winner = 0;
+            GameOver();
+        }
+        if (buttonList[2].text == buttonList[5].text && buttonList[5].text == buttonList[8].text && buttonList[2].text == playerSide)
+        {
+            winner = 0;
+            GameOver();
+        }
+        if (buttonList[0].text == buttonList[4].text && buttonList[4].text == buttonList[8].text && buttonList[0].text == playerSide)
+        {
+            winner = 0;
+            GameOver();
+        }
+        if (buttonList[2].text == buttonList[4].text && buttonList[4].text == buttonList[6].text && buttonList[2].text == playerSide)
+        {
+            winner = 0;
+            GameOver();
+        }
+        if (noOfMoves == 9 && winner == 1)
+        {
+            text.text = "It's A Draw !!. You get 1 Point";
+            score++;
+            playerScore = playerScore + score;
+            GameOver();
+        }
+        ChangeSides();
+    }
 
+    //Changes the player´s turn.
+    void ChangeSides()
+    {
+        playerSide = (playerSide == "X") ? "O" : "X";
+    }
+
+    //When it is a draw or one player has won.
+    void GameOver()
+    {
+        noOfGames++;
+        playerNoOfGames = noOfGames;
+        scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+        noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+        for (int i = 0; i < buttonList.Length; i++)
+        {
+            buttonList[i].GetComponentInParent<Button>().interactable = false;
+            StartCoroutine(WaitAndRestart());
+        }
     }
 
     //Game will waif for 2 seconds and then call the NewGame function.
     IEnumerator WaitAndRestart()
     {
         yield return new WaitForSeconds(2);
+        noOfMoves = 0;
+        for (int i = 0; i < buttonList.Length; i++)
+        {
+            buttonList[i].GetComponentInParent<Button>().interactable = true;
+            buttonList[i].text = "";
+        }
         NewGame();
     }
 
