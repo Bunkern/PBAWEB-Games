@@ -6,11 +6,16 @@ using UnityEngine.UI;
 
 public class TTTLogic : MonoBehaviour
 {
+
+    public Text[] buttonList;
+
     public Text scoreText;
     public Text text;
     public Text noOfGamesText;
 
     public InputField nameText;
+
+    private string playerSide;
 
     public int turn;
     public int turnCount;
@@ -27,6 +32,32 @@ public class TTTLogic : MonoBehaviour
     void Start()
     {
         text.text = "Can you Best the AI ?";
+    }
+
+    private void Awake()
+    {
+        playerSide = "X";
+        SetControllerOnButtons();
+    }
+
+    void SetControllerOnButtons()
+    {
+        for (int i = 0; i < buttonList.Length; i++)
+        {
+            buttonList[i].GetComponentInParent<ButtonLogic>().SetController(this);
+        }
+    }
+
+    //Returns an X or O, based on players turn.
+    public string GetPlayerSide()
+    {
+        return playerSide;
+    }
+
+    //End current players turn.
+    public void EndTurn()
+    {
+
     }
 
     //Game will waif for 2 seconds and then call the NewGame function.
