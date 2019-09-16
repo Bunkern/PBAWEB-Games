@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class TTTLogic : MonoBehaviour
 {
-
     public Text[] buttonList;
 
     public Text scoreText;
@@ -17,8 +16,6 @@ public class TTTLogic : MonoBehaviour
 
     private string playerSide;
 
-    public int turn;
-    public int turnCount;
     public int noOfGames;
     public int score;
     public int noOfMoves;
