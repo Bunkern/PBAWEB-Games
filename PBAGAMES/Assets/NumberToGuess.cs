@@ -33,14 +33,10 @@ public class NumberToGuess : MonoBehaviour
     {
         numberToGuess = random.Next(1, 10);
         guessTime = 3;
-    }
-
-    void Awake()
-    {
         text.text = "Can you guess the correct number ?";
-        
     }
 
+    //Gets the the input from the number input field.
     public void GetNumberInput ()
     {
         string guess = input.text;
@@ -49,15 +45,17 @@ public class NumberToGuess : MonoBehaviour
          input.text = "";
     }
 
+    //Gets the input from the name input field.
     public void GetNameInput()
     {
         playerName = nameText.text;
     }
 
+    //Compares the player number with the random number to see if they match.
     void CompareNumbers(int guessInt)
     {
-        
-        if (guessTime > 1) {
+        if (guessTime > 1)
+        {
             guessTime--;
             if (guessInt == numberToGuess)
             {
@@ -68,33 +66,41 @@ public class NumberToGuess : MonoBehaviour
                 playerScore = playerScore + score;
                 scoreText.text = "Score: " + System.Convert.ToString(playerScore);
                 playerNoOfGames = noOfGames;
-                NewGame();
-            } else if (guessInt != numberToGuess)
-            {
-                text.text = "Guess again";
+                StartCoroutine(WaitAndRestart());
+            }
+            if (guessInt != numberToGuess)
+            { 
+                    text.text = "Wrong Number. Guess again";
             }
         } else
         {
             noOfGames++;
             noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(noOfGames);
-            text.text = "No more guesses for this game" + "\n" + "a new Game has startet";
+            text.text = "Wrong Number." + "\n" + "No more guesses for this game" + "\n" + "a new Game has startet";
             playerNoOfGames = noOfGames;
-            NewGame();
+            StartCoroutine(WaitAndRestart());
         }
-    }    
+    }
 
+    //Game will waif for 2 seconds and then call the NewGame function.
+    IEnumerator WaitAndRestart()
+    {
+        yield return new WaitForSeconds(2);
+        NewGame();
+    }
+
+    //Calles the Start function.
     void NewGame()
     {
         Start();
     }
 
+    //Checks if there has been played a game and if there has been entered a name in the name input field. If so it calls the PostToDatabase function.
     public void Submit()
     {
-
         if (playerNoOfGames == 0)
         {
             text.text = "You need to play a game, before you can upload";
-
         }
         if (playerNoOfGames > 0)
         {
@@ -109,7 +115,7 @@ public class NumberToGuess : MonoBehaviour
         }
     }
 
-    //Post data to database
+    //Post data to database.
     public void PostToDatabase()
     {
         
