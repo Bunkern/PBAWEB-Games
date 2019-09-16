@@ -34,24 +34,28 @@ public class RPSLogic : MonoBehaviour
         aiText.text = "AI Choice";
     }
 
+    //Will send the player choice to the CompareChoice function.
     public void RockChoice()
     {
         playerChoice = 1;
         CompareChoice();
     }
 
+    //Will send the player choice to the CompareChoice function.
     public void PapirChoice()
     {
         playerChoice = 2;
         CompareChoice();
     }
 
+    //Will send the player choice to the CompareChoice function.
     public void ScissorsChoice()
     {
         playerChoice = 3;
         CompareChoice();
     }
 
+    //Will check who wins from the choices the player made and the random number generated for the AI.
     void CompareChoice()
     {
         DisplayAIChoice();
@@ -134,6 +138,7 @@ public class RPSLogic : MonoBehaviour
         }
     }
 
+    //Will display the choice for the ai in the text field.
     public void DisplayAIChoice()
     {
         if (aiNumber == 1)
@@ -152,22 +157,26 @@ public class RPSLogic : MonoBehaviour
         }
     }
 
+    //Game will waif for 2 seconds and then call the NewGame function.
     IEnumerator WaitAndRestart()
     {
         yield return new WaitForSeconds(2);
         NewGame();
     }
 
+    //Gets the input from the name input field.
     public void GetNameInput()
     {
         playerName = nameText.text;
     }
 
+    //Calles the Start function.
     void NewGame()
     {
         Start();
     }
 
+    //Checks if there has been played a game and if there has been entered a name in the name input field. If so it calls the PostToDatabase function.
     public void Submit()
     {
         

@@ -29,22 +29,26 @@ public class TTTLogic : MonoBehaviour
         text.text = "Can you Best the AI ?";
     }
 
+    //Game will waif for 2 seconds and then call the NewGame function.
     IEnumerator WaitAndRestart()
     {
         yield return new WaitForSeconds(2);
         NewGame();
     }
 
+    //Gets the input from the name input field.
     public void GetNameInput()
     {
         playerName = nameText.text;
     }
 
+    //Calles the Start function.
     void NewGame()
     {
         Start();
     }
 
+    //Checks if there has been played a game and if there has been entered a name in the name input field. If so it calls the PostToDatabase function.
     public void Submit()
     {
 
