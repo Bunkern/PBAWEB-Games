@@ -31,6 +31,7 @@ public class TTTLogic : MonoBehaviour
     void Start()
     {
         text.text = "Can you Best the AI ?";
+        winner = 1;
     }
 
     //Set up when the game starts.
@@ -61,41 +62,57 @@ public class TTTLogic : MonoBehaviour
         noOfMoves++;
         if (buttonList[0].text == buttonList[1].text && buttonList[1].text == buttonList[2].text && buttonList[0].text == playerSide)
         {
+            score = 3;
+            PlayerWins();
             winner = 0;
             GameOver();
         }
         if (buttonList[3].text == buttonList[4].text && buttonList[4].text == buttonList[5].text && buttonList[3].text == playerSide)
         {
+            score = 3;
+            PlayerWins();
             winner = 0;
             GameOver();
         }
         if (buttonList[6].text == buttonList[7].text && buttonList[7].text == buttonList[8].text && buttonList[6].text == playerSide)
         {
+            score = 3;
+            PlayerWins();
             winner = 0;
             GameOver();
         }
         if (buttonList[0].text == buttonList[3].text && buttonList[3].text == buttonList[6].text && buttonList[0].text == playerSide)
         {
+            score = 3;
+            PlayerWins();
             winner = 0;
             GameOver();
         }
         if (buttonList[1].text == buttonList[4].text && buttonList[4].text == buttonList[7].text && buttonList[1].text == playerSide)
         {
+            score = 3;
+            PlayerWins();
             winner = 0;
             GameOver();
         }
         if (buttonList[2].text == buttonList[5].text && buttonList[5].text == buttonList[8].text && buttonList[2].text == playerSide)
         {
+            score = 3;
+            PlayerWins();
             winner = 0;
             GameOver();
         }
         if (buttonList[0].text == buttonList[4].text && buttonList[4].text == buttonList[8].text && buttonList[0].text == playerSide)
         {
+            score = 3;
+            PlayerWins();
             winner = 0;
             GameOver();
         }
         if (buttonList[2].text == buttonList[4].text && buttonList[4].text == buttonList[6].text && buttonList[2].text == playerSide)
         {
+            score = 3;
+            PlayerWins();
             winner = 0;
             GameOver();
         }
@@ -113,6 +130,16 @@ public class TTTLogic : MonoBehaviour
     void ChangeSides()
     {
         playerSide = (playerSide == "X") ? "O" : "X";
+    }
+
+    void PlayerWins()
+    {
+        if (playerSide == "X")
+        {
+            text.text = "Cool you won !!. You get 3 Point";
+            playerScore = playerScore + score;
+            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+        }
     }
 
     //When it is a draw or one player has won.
