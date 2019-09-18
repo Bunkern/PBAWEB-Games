@@ -30,6 +30,7 @@ public class TTTLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerSide = "X";
         text.text = "Can you Best the AI ?";
         winner = 1;
     }
@@ -67,63 +68,86 @@ public class TTTLogic : MonoBehaviour
             winner = 0;
             GameOver();
         }
-        if (buttonList[3].text == buttonList[4].text && buttonList[4].text == buttonList[5].text && buttonList[3].text == playerSide)
+        else if (buttonList[3].text == buttonList[4].text && buttonList[4].text == buttonList[5].text && buttonList[3].text == playerSide)
         {
             score = 3;
             PlayerWins();
             winner = 0;
             GameOver();
         }
-        if (buttonList[6].text == buttonList[7].text && buttonList[7].text == buttonList[8].text && buttonList[6].text == playerSide)
+        else if (buttonList[6].text == buttonList[7].text && buttonList[7].text == buttonList[8].text && buttonList[6].text == playerSide)
         {
             score = 3;
             PlayerWins();
             winner = 0;
             GameOver();
         }
-        if (buttonList[0].text == buttonList[3].text && buttonList[3].text == buttonList[6].text && buttonList[0].text == playerSide)
+        else if (buttonList[0].text == buttonList[3].text && buttonList[3].text == buttonList[6].text && buttonList[0].text == playerSide)
         {
             score = 3;
             PlayerWins();
             winner = 0;
             GameOver();
         }
-        if (buttonList[1].text == buttonList[4].text && buttonList[4].text == buttonList[7].text && buttonList[1].text == playerSide)
+        else if (buttonList[1].text == buttonList[4].text && buttonList[4].text == buttonList[7].text && buttonList[1].text == playerSide)
         {
             score = 3;
             PlayerWins();
             winner = 0;
             GameOver();
         }
-        if (buttonList[2].text == buttonList[5].text && buttonList[5].text == buttonList[8].text && buttonList[2].text == playerSide)
+        else if (buttonList[2].text == buttonList[5].text && buttonList[5].text == buttonList[8].text && buttonList[2].text == playerSide)
         {
             score = 3;
             PlayerWins();
             winner = 0;
             GameOver();
         }
-        if (buttonList[0].text == buttonList[4].text && buttonList[4].text == buttonList[8].text && buttonList[0].text == playerSide)
+        else if (buttonList[0].text == buttonList[4].text && buttonList[4].text == buttonList[8].text && buttonList[0].text == playerSide)
         {
             score = 3;
             PlayerWins();
             winner = 0;
             GameOver();
         }
-        if (buttonList[2].text == buttonList[4].text && buttonList[4].text == buttonList[6].text && buttonList[2].text == playerSide)
+        else if (buttonList[2].text == buttonList[4].text && buttonList[4].text == buttonList[6].text && buttonList[2].text == playerSide)
         {
             score = 3;
             PlayerWins();
             winner = 0;
             GameOver();
         }
-        if (noOfMoves == 9 && winner == 1)
+        else if (noOfMoves == 9 && winner == 1)
         {
             text.text = "It's A Draw !!. You get 1 Point";
             score++;
             playerScore = playerScore + score;
             GameOver();
         }
-        ChangeSides();
+        else
+        {
+            ChangeSides();
+            if (playerSide == "O")
+            {
+                ComputerTurn();
+            }
+        }        
+    }
+
+    void ComputerTurn()
+    {
+        bool foundEmptySPot = false;
+
+        while (!foundEmptySPot)
+        {
+            int rndNumber = Random.Range(0, 9);
+            if (buttonList[rndNumber].GetComponentInParent<Button>().IsInteractable())
+            {
+                buttonList[rndNumber].GetComponentInParent<Button>().onClick.Invoke();
+                foundEmptySPot = true;
+            }
+
+        }
     }
 
     //Changes the player´s turn.
@@ -139,6 +163,10 @@ public class TTTLogic : MonoBehaviour
             text.text = "Cool you won !!. You get 3 Point";
             playerScore = playerScore + score;
             scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+        }
+        if (playerSide == "O")
+        {
+            text.text = "Darn You lost. You don't get any points!";
         }
     }
 
