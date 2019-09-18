@@ -146,7 +146,6 @@ public class TTTLogic : MonoBehaviour
                 buttonList[rndNumber].GetComponentInParent<Button>().onClick.Invoke();
                 foundEmptySPot = true;
             }
-
         }
     }
 
@@ -212,11 +211,9 @@ public class TTTLogic : MonoBehaviour
     //Checks if there has been played a game and if there has been entered a name in the name input field. If so it calls the PostToDatabase function.
     public void Submit()
     {
-
         if (playerNoOfGames == 0)
         {
             text.text = "You need to play a game, before you can upload";
-
         }
         if (playerNoOfGames > 0)
         {
@@ -229,12 +226,13 @@ public class TTTLogic : MonoBehaviour
                 PostToDatabase();
             }
         }
+        StartCoroutine(WaitAndRestart());
     }
 
     //Post data to database
     public void PostToDatabase()
     {
-        RPSUser user = new RPSUser();
+        TTTUser user = new TTTUser();
         RestClient.Post("https://pba-web-52d02.firebaseio.com/" + playerName + ".json", user);
     }
 }

@@ -421,10 +421,10 @@ MonoBehaviour:
   text: {fileID: 1373855299}
   noOfGamesText: {fileID: 1665018632}
   nameText: {fileID: 718186051}
-  turn: 0
-  turnCount: 0
   noOfGames: 0
   score: 0
+  noOfMoves: 0
+  winner: 0
 --- !u!4 &133100252
 Transform:
   m_ObjectHideFlags: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 133100251}
         m_MethodName: GetNameInput
         m_Mode: 1
         m_Arguments:
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 133100251}
         m_MethodName: Submit
         m_Mode: 1
         m_Arguments:
@@ -1900,7 +1900,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 133100251}
         m_MethodName: GetNameInput
         m_Mode: 1
         m_Arguments:

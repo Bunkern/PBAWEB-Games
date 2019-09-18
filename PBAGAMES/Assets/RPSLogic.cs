@@ -63,79 +63,52 @@ public class RPSLogic : MonoBehaviour
         {
             text.text = "It´s a Draw. You both get a point" + "\n" + "A new game will start soon";
             score++;
-            playerScore = score;
-            noOfGames++;
-            playerNoOfGames = noOfGames;
-            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
-            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
-            StartCoroutine( WaitAndRestart());            
+            noOfGames++;          
         }
 
         if (aiNumber == 1 && playerChoice == 2)
         {
             text.text = "You Win. You 3 points" + "\n" + "A new game will start soon";
             score = score+3;
-            playerScore = score;
             noOfGames++;
-            playerNoOfGames = noOfGames;
-            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
-            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
-            StartCoroutine(WaitAndRestart());
         }
 
         if (aiNumber == 1 && playerChoice == 3)
         {
             text.text = "You Loose. You do not get any points" + "\n" + "A new game will start soon";
             noOfGames++;
-            playerNoOfGames = noOfGames;
-            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
-            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
-            StartCoroutine(WaitAndRestart());
         }
 
         if (aiNumber == 2 && playerChoice == 3)
         {
             text.text = "You Win. You 3 points" + "\n" + "A new game will start soon";
             score = score + 3;
-            playerScore = score;
             noOfGames++;
-            playerNoOfGames = noOfGames;
-            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
-            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
-            StartCoroutine(WaitAndRestart());
         }
 
         if (aiNumber == 2 && playerChoice == 1)
         {
             text.text = "You Loose. You do not get any points" + "\n" + "A new game will start soon";
             noOfGames++;
-            playerNoOfGames = noOfGames;
-            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
-            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
-            StartCoroutine(WaitAndRestart());
         }
-
         if (aiNumber == 3 && playerChoice == 1)
         {
             text.text = "You Win. You 3 points" + "\n" + "A new game will start soon";
-            score = score + 3;
-            playerScore = score;
+            score = score + 3;            
             noOfGames++;
             playerNoOfGames = noOfGames;
-            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
-            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
-            StartCoroutine(WaitAndRestart());
         }
 
         if (aiNumber == 3 && playerChoice == 2)
         {
             text.text = "You Loose. You do not get any points" + "\n" + "A new game will start soon";
-            noOfGames++;
-            playerNoOfGames = noOfGames;
-            scoreText.text = "Score: " + System.Convert.ToString(playerScore);
-            noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
-            StartCoroutine(WaitAndRestart());
+            noOfGames++;            
         }
+        playerScore = score;
+        playerNoOfGames = noOfGames;
+        scoreText.text = "Score: " + System.Convert.ToString(playerScore);
+        noOfGamesText.text = "Number of Games played: " + System.Convert.ToString(playerNoOfGames);
+        StartCoroutine(WaitAndRestart());
     }
 
     //Will display the choice for the ai in the text field.
@@ -178,12 +151,10 @@ public class RPSLogic : MonoBehaviour
 
     //Checks if there has been played a game and if there has been entered a name in the name input field. If so it calls the PostToDatabase function.
     public void Submit()
-    {
-        
+    {        
         if (playerNoOfGames == 0)
         {
-            text.text = "You need to play a game, before you can upload";
-            
+            text.text = "You need to play a game, before you can upload";            
         }
         if (playerNoOfGames > 0)
         {
@@ -196,6 +167,7 @@ public class RPSLogic : MonoBehaviour
                 PostToDatabase();
             }
         }
+        StartCoroutine(WaitAndRestart());
     }
 
     //Post data to database
